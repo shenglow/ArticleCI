@@ -14,7 +14,14 @@
 						<?=htmlspecialchars($article->title)?>
 					</a>
 				</strong>
-				<?=htmlspecialchars($article->content)?>
+				<?php
+					$content = htmlspecialchars($article->content);
+					if (mb_strlen($content) > 100) {
+						echo nl2br(mb_substr($content,0,100,'utf-8')).'...';
+					} else {
+						echo nl2br($content);
+					}
+				?>
 			</p>
 		</div>
 		<?php } ?>

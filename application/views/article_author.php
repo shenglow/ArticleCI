@@ -6,7 +6,16 @@
 		</a>
 	</div>
 	<div class="card-body">
-		<p class="card-text"><?=nl2br(htmlspecialchars($article->content))?></p>
+		<p class="card-text">
+			<?php
+				$content = htmlspecialchars($article->content);
+				if (mb_strlen($content) > 200) {
+					echo nl2br(mb_substr($content,0,200,'utf-8')).'...';
+				} else {
+					echo nl2br($content);
+				}
+			?>
+		</p>
 		<?php 
 			if(isset($_SESSION["user"]) && $_SESSION["user"] != null && $_SESSION["user"]->userid == $article->userid) { ?>
 			<hr class="my-4">
