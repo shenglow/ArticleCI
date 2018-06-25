@@ -26,4 +26,4 @@
 </div>
 <?php } ?>
 
-<p><?=$pageLinks?></p>
+<?=$pageLinks?>

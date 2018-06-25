@@ -17,7 +17,7 @@ class Article extends MY_Controller {
 			return true;
 		}
 
-		$pageSize = 20;
+		$pageSize = 4;
 		$this->load->model("ArticleModel");
 
 		//載入分頁class
@@ -26,6 +26,17 @@ class Article extends MY_Controller {
 		$config['base_url'] = base_url('/article/author/'.$userid.'/');
 		$config['total_rows'] = $this->ArticleModel->countArticlesByUser($user->userid);
 		$config['per_page'] = $pageSize;
+		$config['full_tag_open'] = '<ul class="pagination justify-content-center">';
+		$config['full_tag_close'] ='</ul>';
+		$config['num_tag_open'] = '<li class="page-item">';
+		$config['num_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="page-item active"><a class="page-link" href="#">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['next_tag_open'] = '<li class="page-item">';
+		$config['next_tag_close'] = '</li>';
+		$config['prev_tag_open'] = '<li class="page-item">';
+		$config['prev_tag_close'] = '</li>';
+		$config['attributes'] = array('class' => 'page-link');
 		$this->pagination->initialize($config);
 
 		//抓此作者所有文章
